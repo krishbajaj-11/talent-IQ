@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/krishbajaj-11/talent-IQ/issues"
   },
-  "homepage": "https://github.com/krishbajaj-11/talent-IQ#readme"
+  "homepage": "https://github.com/krishbajaj-11/talent-IQ#readme",
+  "dependencies": {
+    "stream-chat": "^9.24.0"
+  }
 }
