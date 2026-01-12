@@ -14,9 +14,12 @@ const app = express();
 //middleware
 app.use(express.json());
 //credentials:true meaning server allows a browser to send cookies along with requests
+//origin:ENV.CLIENT_URL meaning only requests from this origin are allowed
 app.use(cors({origin:ENV.CLIENT_URL,credentials:true}));
 
-app.use("/api/inngest",serve({client:inngest,functions}))
+
+
+app.use("/api/inngest",serve({client:inngest,functions}))//These requests never reach normal routes , They are handled by Inngest background / event functions
 
 
 
@@ -27,6 +30,14 @@ app.get("/health", (req, res) => {
   res.json({ message: "Server is running" });
 });
 
+
+
+
+
+
+//Static file exists? → serve it
+//   ↓
+//No match? → index.html (SPA fallback)
 
 if (ENV.NODE_ENV === "production") {
 

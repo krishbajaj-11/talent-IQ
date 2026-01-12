@@ -3,13 +3,16 @@ import {connectDB} from "./db.js";
 import User from "../models/User.js";
 import { deleteStreamUser, upsertStreamUser } from "./stream.js";
 
+
+//This initializes the Inngest client for registering event-driven functions.
 export const inngest= new Inngest({id:"talent_IQ"});
 
 const syncUser= inngest.createFunction(
     {id:"sync-user"},
     {event:"clerk/user.created"},
     async({event})=>{
-        await connectDB();
+        await connectDB();  //Background jobs need independent DB connection handling
+
         const{id,email_addresses,first_name,last_name,image_url}=event.data; //destructure user data from event
 
         const newUser={
@@ -18,7 +21,9 @@ const syncUser= inngest.createFunction(
             name:`${first_name||""} ${last_name||""}`,
             profileImage:image_url||""
         }
-       await User.create(newUser);
+
+
+       await User.create(newUser);//Inserts user into database ,Happens automatically after signup
 
 
        await upsertStreamUser({
