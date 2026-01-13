@@ -7,7 +7,7 @@ import{serve} from "inngest/express";
 import { inngest ,functions} from "./lib/inngest.js";
 import {clerkMiddleware} from "@clerk/express";
 import { protectRoute } from "./middleware/protectRoute.js";
-
+import sessionRoutes from "./routes/sessionRoute.js";
 import chatRoutes from "./routes/chatRoutes.js";
 
 const __dirname = path.resolve();
@@ -26,6 +26,7 @@ app.use(clerkMiddleware()); //this adds req.auth to request objects: req.auth()
 
 app.use("/api/inngest",serve({client:inngest,functions}))//These requests never reach normal routes , They are handled by Inngest background / event functions
 app.use("/api/chat",chatRoutes);
+app.use("/api/sessions", sessionRoutes);
 
 
 
