@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/krishbajaj-11/talent-IQ#readme",
   "dependencies": {
+    "@tanstack/react-query": "^5.90.5",
+    "axios": "^1.12.2",
+    "react-hot-toast": "^2.6.0",
     "stream-chat": "^9.24.0"
   }
 }
