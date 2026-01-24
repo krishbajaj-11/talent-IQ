@@ -178,3 +178,6 @@ export async function endSession(req, res) {
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+
+//This controller demonstrates backend orchestration of real-time sessions by combining MongoDB persistence with Stream video and chat APIs, enforcing business rules, security checks, and proper resource lifecycle management.
